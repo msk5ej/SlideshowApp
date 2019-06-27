@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SlideshowApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xMQ-yY-tKm">
-                                <rect key="frame" x="30" y="74" width="354" height="566.5"/>
+                                <rect key="frame" x="30" y="50" width="260" height="416"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xMQ-yY-tKm" secondAttribute="height" multiplier="5:8" id="wfX-19-1hQ"/>
@@ -29,7 +29,7 @@
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnD-1h-Cxy">
-                                <rect key="frame" x="30" y="670.5" width="37" height="50"/>
+                                <rect key="frame" x="30" y="496" width="37" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="1hv-tN-YFE"/>
                                 </constraints>
@@ -40,7 +40,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VD-vj-xAH">
-                                <rect key="frame" x="117" y="670.5" width="37" height="50"/>
+                                <rect key="frame" x="117" y="496" width="37" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="D2F-1l-fJY"/>
                                 </constraints>
@@ -51,13 +51,15 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYi-5X-Yw1">
-                                <rect key="frame" x="307" y="670.5" width="77" height="50"/>
+                                <rect key="frame" x="253" y="496" width="37" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="dIQ-SC-MX4"/>
                                 </constraints>
-                                <state key="normal" title="再生／停止"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                <state key="normal" title="再生"/>
                                 <connections>
-                                    <action selector="startstop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5b5-5X-Jhb"/>
+                                    <action selector="startstop2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zvR-Aq-gOg"/>
+                                    <action selector="startstop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PLr-ob-hDN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -78,7 +80,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="back" destination="8VD-vj-xAH" id="nBh-7c-23b"/>
+                        <outlet property="go" destination="lnD-1h-Cxy" id="CsZ-NO-C8q"/>
                         <outlet property="imageView" destination="xMQ-yY-tKm" id="ikh-Ik-5dc"/>
+                        <outlet property="startstop" destination="yYi-5X-Yw1" id="Rt6-iD-91g"/>
                         <segue destination="s6d-KX-d7Q" kind="show" identifier="zoom" id="Rbl-2W-kM9"/>
                     </connections>
                 </viewController>
@@ -89,24 +94,24 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="181.59999999999999" y="18.440779610194905"/>
+            <point key="canvasLocation" x="180" y="17.95774647887324"/>
         </scene>
         <!--Zoom View Controller-->
         <scene sceneID="RqD-95-3av">
             <objects>
                 <viewController id="s6d-KX-d7Q" customClass="ZoomViewController" customModule="SlideshowApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JTR-6u-6Ub">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XGu-U8-YtX">
-                                <rect key="frame" x="30" y="74" width="354" height="566.5"/>
+                                <rect key="frame" x="30" y="50" width="260" height="416"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="XGu-U8-YtX" secondAttribute="height" multiplier="5:8" id="nkn-Dc-PfJ"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0f-MH-s3B">
-                                <rect key="frame" x="130" y="670.5" width="154" height="50"/>
+                                <rect key="frame" x="130" y="496" width="60" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="J2X-k4-kmr"/>
                                 </constraints>

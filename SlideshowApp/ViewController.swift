@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         self.timer.invalidate()
         self.timer = nil
         }
+        startstop.setTitle("再生", for: .normal)
     }
     
     //画像を指定する変数
@@ -24,11 +25,11 @@ class ViewController: UIViewController {
     //画像表示のfunction
     func displayImage() {
         let imageArray = [
-            "image1.JPG",
-            "image2.JPG",
-            "image3.JPG",
-            "image4.JPG",
-            "image5.JPG",
+        "image1.JPG",
+        "image2.JPG",
+        "image3.JPG",
+        "image4.JPG",
+        "image5.JPG",
         ]
         let name = imageArray[imageNo]
         let image = UIImage(named: name)
@@ -37,29 +38,27 @@ class ViewController: UIViewController {
     
     //進むボタンの機能
     @IBAction func go(_ sender: Any) {
-        if self.timer == nil {
         if imageNo == 4 {
-            imageNo = 0
+        imageNo = 0
         }
         else {
-            imageNo += 1
+        imageNo += 1
         }
         displayImage()
-        }
     }
+    @IBOutlet weak var go: UIButton!
     
     //戻るボタンの機能
     @IBAction func back(_ sender: Any) {
-        if self.timer == nil {
         if imageNo == 0 {
-            imageNo = 4
+        imageNo = 4
         }
         else {
-            imageNo -= 1
+        imageNo -= 1
         }
         displayImage()
-        }
     }
+    @IBOutlet weak var back: UIButton!
     
     //タイマー格納の変数
     var timer: Timer!
@@ -67,22 +66,37 @@ class ViewController: UIViewController {
     //２秒ごとに呼び出される関数
     @objc func updateTimer(_ timer: Timer) {
         if imageNo == 4 {
-            imageNo = 0
+        imageNo = 0
         }
         else {
-            imageNo += 1
+        imageNo += 1
         }
         displayImage()
     }
     
     //再生／停止ボタンの機能
+    @IBOutlet weak var startstop: UIButton!
     @IBAction func startstop(_ sender: Any) {
         if self.timer == nil {
-            self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(updateTimer(_:)), userInfo: nil, repeats: true)
+            self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector:
+            #selector(updateTimer(_:)), userInfo: nil, repeats: true)
+            go.isEnabled = false;
+            back.isEnabled = false;
         }
         else {
             self.timer.invalidate()
             self.timer = nil
+            go.isEnabled = true;
+            back.isEnabled = true;
+        }
+    }
+    //再生／停止ボタンの名前の切り替え
+    @IBAction func startstop2(_ sender: UIButton) {
+        if self.timer == nil {
+        sender.setTitle("停止", for: .normal)
+        }
+        else {
+        sender.setTitle("再生", for: .normal)
         }
     }
     
@@ -90,15 +104,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    
+        
         let image = UIImage(named: "image1.JPG")
         imageView.image = image
     }
 
     //画面遷移時の画像指定データの受け渡し
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    let zoomViewController:ZoomViewController = segue.destination as! ZoomViewController
-    zoomViewController.displayNo = imageNo
+        let zoomViewController:ZoomViewController = segue.destination as! ZoomViewController
+        zoomViewController.displayNo = imageNo
     }
     
     override func didReceiveMemoryWarning() {
